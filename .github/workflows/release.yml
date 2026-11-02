@@ -120,17 +120,12 @@ jobs:
       - name: Extract Release Info
         id: info
         run: |
-          INFO_FILE=$(find ./artifacts -path "*zako*" -name "release_info.txt" | head -n 1)
-          if [ -z "$INFO_FILE" ]; then
-            INFO_FILE=$(find ./artifacts -name "release_info.txt" | head -n 1)
-          fi
+          INFO_FILE=$(find ./artifacts -name "release_info.txt" | head -n 1)
           if [ -n "$INFO_FILE" ] && [ -f "$INFO_FILE" ]; then
             cat "$INFO_FILE" >> $GITHUB_OUTPUT
             echo "Loaded versions from $INFO_FILE!"
           else
-            echo "KSU_NAME=Unknown" >> $GITHUB_OUTPUT
-            echo "KSU_CODE=Unknown" >> $GITHUB_OUTPUT
-            echo "SUSFS_VER=Unknown" >> $GITHUB_OUTPUT
+            echo "KSU_VER=Unknown" >> $GITHUB_OUTPUT
             echo "BBG_VER=Unknown" >> $GITHUB_OUTPUT
             echo "NOMOUNT_VER=Unknown" >> $GITHUB_OUTPUT
           fi
@@ -146,8 +141,7 @@ jobs:
           prerelease: false
           body: |
             > [!NOTE]   
-            > - KSU Version: ${{ steps.info.outputs.KSU_NAME }} (${{ steps.info.outputs.KSU_CODE }})   
-            > - SuSFS Version: ${{ steps.info.outputs.SUSFS_VER }}   
+            > - KernelSU Version: ${{ steps.info.outputs.KSU_VER }}   
             > - Baseband Guard Version: ${{ steps.info.outputs.BBG_VER }}   
             > - Nomount Version: ${{ steps.info.outputs.NOMOUNT_VER }}   
                

@@ -34,17 +34,17 @@ This kernel follows weekly builds of LineageOS, you will get a new kernel build 
 **Features list**   
 | Kernel Name | KernelSU | Baseband Guard | NoMount | Droidspaces |
 | :--- | :---: | :---: | :---: | :---: |
-| LineageOS (SM6150) | ✅ w/ SUSFS | ✅ | ✅ | ✅ |
-| CrDroid (SM6150) | ✅ w/ SUSFS | ✅ | ✅ | 🟡 |
-| PixelOS (SM6150) | ✅ w/ SUSFS | ✅ | ✅ | ❌ |
-| AwakenOS (SM6150) | ✅ w/ SUSFS | ✅ | ✅ | ❌ |
-| LineageOS (SM6125) | ✅ w/ SUSFS | ✅ | ✅ | 🟡 |
-| Mi-Thorium (MSM8937) | ✅ w/ SUSFS | ✅ | ✅ | ✅ |
-| Mi-Thorium (SDM439) | ✅ w/ SUSFS | ✅ | ✅ | ✅ |
-| Mi-Titanium (MSM8953) | ✅ w/ SUSFS | ✅ | ✅ | ✅ |
-| SouthWest-NG (SDM660) | ✅ w/ SUSFS | ✅ | ✅ | ✅ |
-| MIUI (SM6150) | ✅ w/ SUSFS | ✅ | ✅ | 🟡 |
-| LineageOS (SM7325) | ✅ w/ SUSFS | ✅ | ✅ | ❌ |
+| LineageOS (SM6150) | ✅ | ✅ | ✅ | ✅ |
+| CrDroid (SM6150) | ✅ | ✅ | ✅ | 🟡 |
+| PixelOS (SM6150) | ✅ | ✅ | ✅ | ❌ |
+| AwakenOS (SM6150) | ✅ | ✅ | ✅ | ❌ |
+| LineageOS (SM6125) | ✅ | ✅ | ✅ | 🟡 |
+| Mi-Thorium (MSM8937) | ✅ | ✅ | ✅ | ✅ |
+| Mi-Thorium (SDM439) | ✅ | ✅ | ✅ | ✅ |
+| Mi-Titanium (MSM8953) | ✅ | ✅ | ✅ | ✅ |
+| SouthWest-NG (SDM660) | ✅ | ✅ | ✅ | ✅ |
+| MIUI (SM6150) | ✅ | ✅ | ✅ | 🟡 |
+| LineageOS (SM7325) | ✅ | ✅ | ✅ | ❌ |
    
 **File Namings**   
 `neon-<OS/KernelName>-<DeviceName>-<Platform>-<BuildDate>.zip`   
@@ -95,7 +95,7 @@ This kernel follows weekly builds of LineageOS, you will get a new kernel build 
 - Flash or Sideload the flashable zip with `adb sideload </path/to/flashable.zip>`  
 - Allow to continue if you see Error 21 signature invalid.   
 - Reboot to system.   
-- Install lastest BakaSU Manager. [[Original](https://nightly.link/Baka-SU/BakaSU/workflows/build-manager/main/Manager-release.zip) / [Spoofed](https://nightly.link/Baka-SU/BakaSU/workflows/build-manager/main/Spoofed-Manager-release.zip)] (Optional)
+- Install latest KernelSU Manager. [[backslashxx](https://github.com/backslashxx/KernelSU/releases) / [Original](https://github.com/tiann/KernelSU/releases)] (Optional)
 - Profit.   
 
 **Restore to default kernel**   
@@ -107,21 +107,22 @@ This kernel follows weekly builds of LineageOS, you will get a new kernel build 
 - Profit.   
 
 **Notes**   
-You can install different KernelSU Manager with BakaSU kernel drivers. This is currently supported other KernelSU Managers:   
+You can install different KernelSU Manager with backslashxx's KernelSU kernel drivers. Supported KernelSU Managers:   
 - [Original KernelSU](https://github.com/tiann/KernelSU) (tiann)    
+- [backslashxx KernelSU](https://github.com/backslashxx/KernelSU) (backslashxx)   
 - [KOW's KernelSU](https://github.com/KOWX712/KernelSU) (KOWX712)   
+- [midori01 KernelSU](https://github.com/midori01/KernelSU) (midori01)   
    
 # Credits
 **Patches & buildscript**
 - [TBYOOL](https://github.com/tbyool) for the buildscripts, kernel sources, kernel commits & kernel patches.   
 - [xiaomi-sm6150](https://github.com/xiaomi-sm6150) for the DTB patches.   
-- [JackA1ltMan](https://github.com/JackA1ltman) for BakaSU hook scripts & SUSFS patches.   
 - [TheSillyOk](https://github.com/TheSillyOk) for LTO fixup for 4.14 devices.   
 - [null07089](https://github.com/null07089) for SELinux Hide fixup script.
 - YUPIK, [utkusthr/Frax3r](https://github.com/utkustnr), [Salvo from UN1CA](https://github.com/salvogiangri/UN1CA) for the generic flasher.
 
 **Projects**   
-- [Baka-SU](https://github.com/Baka-SU) for BakaSU.   
+- [backslashxx](https://github.com/backslashxx) for KernelSU.   
 - [vc-teahouse](https://github.com/vc-teahouse) for Baseband Guard.   
 - [maxsteeel](https://github.com/maxsteeel) for NoMount.   
 - [ravindu644](https://github.com/ravindu644) for Droidspaces.   

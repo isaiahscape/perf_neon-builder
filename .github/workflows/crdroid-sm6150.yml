@@ -167,7 +167,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
             echo "-- Exporting goodies settings..."
-            export KERNELSU_SELECTOR="baka-susfs"
+            export KERNELSU_SELECTOR="ksu"
             export BBG_SELECTOR="bbg"
             export NOMOUNT_SELECTOR="nomount"
             export DROIDSPACES_SELECTOR="droidspaces"
@@ -193,22 +193,20 @@ jobs:
             { yes "" 2>/dev/null || true; } | make O=out $MAKE_ARGS olddefconfig &> /dev/null
             { yes "" 2>/dev/null || true; } | make O=out $MAKE_ARGS silentoldconfig &> /dev/null
 
+            source scripts/functions/kernelsu.sh && ksu_verify_config out/.config
+
             echo "-- Compiling the kernel..."
             make -j$(nproc --all) O=out $MAKE_ARGS 2>&1 | tee build.log
 
             echo "-- Exporting build versions..."
-            export KSU_NAME=$(grep -m 1 -e "-- BakaSU version name:" build.log | awk -F': ' '{print $2}' | tr -d '[:space:]')
-            export KSU_CODE=$(grep -m 1 -e "-- BakaSU version code:" build.log | awk -F': ' '{print $2}' | tr -d '[:space:]')
-            export SUSFS_VER=$(grep -m 1 -e "-- SUSFS_VERSION:" build.log | awk -F': ' '{print $2}' | tr -d '[:space:]')
+            export KSU_VER=$(git -C KernelSU describe --tags 2>/dev/null || git -C KernelSU rev-parse --short HEAD 2>/dev/null)
             export BBG_VER=$(grep -m 1 -e "-- BBG version:" build.log | awk -F': ' '{print $2}' | tr -d '[:space:]')
             export NOMOUNT_VER=$(grep -m 1 "NOMOUNT_BASE_VERSION" fs/nomount/nomount.h 2>/dev/null | awk -F'"' '{print $2}' | tr -d '[:space:]')
             cp build.log ../build.log
             cd ..
 
             echo "-- Writing release info.txt..."
-            echo "KSU_NAME=${KSU_NAME:-N/A}" >> release_info.txt
-            echo "KSU_CODE=${KSU_CODE:-N/A}" >> release_info.txt
-            echo "SUSFS_VER=${SUSFS_VER:-N/A}" >> release_info.txt
+            echo "KSU_VER=${KSU_VER:-N/A}" >> release_info.txt
             echo "BBG_VER=${BBG_VER:-N/A}" >> release_info.txt
             echo "NOMOUNT_VER=${NOMOUNT_VER:-N/A}" >> release_info.txt
 
