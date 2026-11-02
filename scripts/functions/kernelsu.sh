@@ -29,10 +29,11 @@ ksu_common_configs() {
         echo "# CONFIG_KSU_TAMPER_SYSCALL_TABLE is not set" >> $FINAL_DEFCONFIG
         echo "CONFIG_KSU_HACK_ARM64_BRANCH_LINK=y" >> $FINAL_DEFCONFIG
     fi
-    # KALLSYMS is required by branch-link hooks and the symbol resolver,
-    # KALLSYMS_ALL enables data symbol lookups (e.g. policy_rwlock) and module blacklist
+    # KALLSYMS is required by branch-link hooks and the symbol resolver.
+    # Note: Do NOT enable CONFIG_KALLSYMS_ALL here; in-tree KSU does not require it,
+    # and enabling it causes llvm-nm to fail with Broken pipe in scripts/kallsyms.
     echo "CONFIG_KALLSYMS=y" >> $FINAL_DEFCONFIG
-    echo "CONFIG_KALLSYMS_ALL=y" >> $FINAL_DEFCONFIG
+    echo "# CONFIG_KALLSYMS_ALL is not set" >> $FINAL_DEFCONFIG
 }
 
 # Verify KernelSU configs survived olddefconfig (run from kernel dir after config generation)
